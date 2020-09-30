@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import "./LoginForm.css";
+import "./PledgeForm.css";
 
-function LoginForm() {
+function PledgeForm() {
   // variables
   const [credentials, setCredentials] = useState({
-    username: "",
-    password: "",
+    amount: "",
+    comment: "",
   });
 
   const history = useHistory();
 
-  // methods
   const handleChange = (e) => {
     const { id, value } = e.target;
     setCredentials((prevCredentials) => ({
@@ -19,7 +18,6 @@ function LoginForm() {
       [id]: value,
     }));
   };
-
   const postData = async () => {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}api-token-auth/`,
@@ -44,32 +42,31 @@ function LoginForm() {
     }
   };
 
-  // template
   return (
     <form>
-      <div className="loginform">
-        <label htmlFor="username">Username:</label>
+      <div className="pledgeform">
+        <label htmlFor="amount">Amount:</label>
         <input
-          type="text"
-          id="username"
-          placeholder="Enter username"
+          type="number"
+          id="amount"
+          placeholder="Enter amount"
           onChange={handleChange}
         />
       </div>
       <div>
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="comment">Comment:</label>
         <input
-          type="password"
-          id="password"
-          placeholder="Enter password"
+          type="text"
+          id="comment"
+          placeholder="Enter comment"
           onChange={handleChange}
         />
       </div>
       <button type="submit" onClick={handleSubmit}>
-        Login
+        Submit
       </button>
     </form>
   );
 }
 
-export default LoginForm;
+export default PledgeForm;

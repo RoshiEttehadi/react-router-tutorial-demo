@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
+import DonatePage from "./pages/DonatePage";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         <Switch>
           <Route path="/project/:id">
             <ProjectPage />
+          </Route>
+          <Route path="/donate">
+            <DonatePage />
           </Route>
           <Route path="/login">
             <LoginPage />
