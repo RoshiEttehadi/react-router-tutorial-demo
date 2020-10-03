@@ -5,10 +5,13 @@ import "./SignUpForm.css";
 function SignUpForm() {
   // variables
   const [credentials, setCredentials] = useState({
-    amount: "",
-    comment: "",
+    name: "",
     anonymous: null,
-    project: "",
+    age: "",
+    gender: "",
+    email: "",
+    username: "",
+    password: "",
   });
 
   console.log(credentials);
@@ -48,23 +51,13 @@ function SignUpForm() {
 
   return (
     <form>
-      <div className="pledgeform">
-        <label htmlFor="amount">Amount:</label>
-        <input
-          type="number"
-          id="amount"
-          name="amount"
-          placeholder="Enter amount"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="comment">Comment:</label>
+      <div className="signupform">
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
-          id="comment"
-          name="comment"
-          placeholder="Enter comment"
+          id="name"
+          name="name"
+          placeholder="Please enter your fullname"
           onChange={handleChange}
         />
       </div>
@@ -88,6 +81,66 @@ function SignUpForm() {
           onChange={handleChange}
         />
         No
+      </div>
+      <div>
+        <label htmlFor="age">Age:</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          placeholder="How old are you?"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="gender">Gender:</label>
+        <input
+          type="radio"
+          id="male"
+          name="gender"
+          value="male"
+          checked={credentials.gender === "male"}
+          onChange={handleChange}
+        />
+        Male
+        <input
+          type="radio"
+          id="female"
+          name="gender"
+          value="female"
+          checked={credentials.gender === "female"}
+          onChange={handleChange}
+        />
+        Female
+        <input
+          type="radio"
+          id="prefer not to say"
+          name="gender"
+          value="other"
+          checked={credentials.gender === "other"}
+          onChange={handleChange}
+        />
+        Prefer not to say
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Please enter your email address"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your age"
+          onChange={handleChange}
+        />
       </div>
       <div>
         <label htmlFor="project">Project:</label>

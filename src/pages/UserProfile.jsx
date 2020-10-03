@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 // import { allProjects } from "../data";
-import ProjectCard from "../components/ProjectCard/ProjectCard";
-import "./HomePage.css";
-import { Link } from "react-router-dom";
+// import ProjectCard from "../components/ProjectCard/ProjectCard";
+import "./UserProfile.css";
 
-function HomePage() {
+function UserProfile() {
   const [projectList, setProjectList] = useState([]);
 
   useEffect(() => {
@@ -27,23 +26,17 @@ function HomePage() {
           src={require("../images/1.jpg")}
           alt="Project Of the Month"
         />
-        <div className="buttons">
-          <Link to="/donate">Donate</Link>;
-        </div>
         {/* <div className="buttons">
-          <Link to="/donate">Status</Link>;
-        </div> */}
-        {/* <div className="buttons">
-          <Link to="/donate">Share</Link>;
+          <Link to="/project">Donate</Link>;
         </div> */}
       </div>
       <div id="project-List">
         {projectList.map((projectData, key) => {
-          return <ProjectCard key={key} projectData={projectData} />;
+          return <UserProfile key={key} projectData={projectData} />;
         })}
       </div>
     </div>
   );
 }
 
-export default HomePage;
+export default UserProfile;
