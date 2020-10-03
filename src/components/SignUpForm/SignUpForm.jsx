@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import "./PledgeForm.css";
+import "./SignUpForm.css";
 
-function PledgeForm() {
+function SignUpForm() {
   // variables
   const [credentials, setCredentials] = useState({
     amount: "",
@@ -106,4 +106,4 @@ function PledgeForm() {
   );
 }
 
-export default PledgeForm;
+export default SignUpForm;

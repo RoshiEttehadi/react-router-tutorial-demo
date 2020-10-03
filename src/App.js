@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
 import DonatePage from "./pages/DonatePage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/donate">
             <DonatePage />
+          </Route>
+          <Route path="/signup">
+            <SignUpPage />
           </Route>
           <Route path="/login">
             <LoginPage />
