@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav/Nav";
@@ -12,12 +12,18 @@ import SignUpPage from "./pages/SignUpPage";
 import UserProfile from "./pages/UserProfile";
 
 function App() {
+  const token = window.localStorage.getItem("token")
+  const [loggedIn, setLoggedIn] = useState(token != null)
+
   return (
     <Router>
       <div>
-        <Nav />
+        <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
         <Switch>
           <Route path="/project/:id">
+            <ProjectPage />
+          </Route>
+          <Route path="/project">
             <ProjectPage />
           </Route>
           <Route path="/donate">
@@ -30,11 +36,11 @@ function App() {
             <UserProfile />
           </Route>
           <Route path="/login">
-            <LoginPage />
+            <LoginPage setLoggedIn={setLoggedIn} />
           </Route>
-          <Route path="/contact">
+          {/* <Route path="/contact">
             <ContactPage />
-          </Route>
+          </Route> */}
           <Route path="/about">
             <AboutPage />
           </Route>

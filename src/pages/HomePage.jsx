@@ -7,43 +7,36 @@ import { Link } from "react-router-dom";
 function HomePage() {
   const [projectList, setProjectList] = useState([]);
 
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}projects`)
-      .then((result) => {
-        return result.json();
-      })
-      .then((data) => {
-        setProjectList(data);
-      });
-    // serProjectList(allProjects)
-  }, []);
+    useEffect(() => {
+      fetch(`${process.env.REACT_APP_API_URL}projects`)
+        .then((result) => {
+          return result.json();
+        })
+        .then((data) => {
+          setProjectList(data);
+        });
+      // setProjectList(allProjects)
+    }, []);
 
-  return (
-    <div>
-      <div className="homepage">
-        <h2>Project of the Month</h2>
-        <img
-          id="projectimage"
-          src={require("../images/1.jpg")}
-          alt="Project Of the Month"
-        />
-        <div className="buttons">
-          <Link to="/donate">Donate</Link>;
+    return (
+      <div>
+        <div className="homepage">
+          <h2>Project of the Month</h2>
+          <img
+            id="projectimage"
+            src={require("../images/1.jpg")}
+            alt="Project Of the Month"
+          />
+          <div className="buttons">
+            <Link to="/donate">Donate</Link>;
+          </div>
         </div>
-        {/* <div className="buttons">
-          <Link to="/donate">Status</Link>;
-        </div> */}
-        {/* <div className="buttons">
-          <Link to="/donate">Share</Link>;
-        </div> */}
+        <div id="project-List">
+          {projectList.map((projectData, key) => {
+            return <ProjectCard key={key} projectData={projectData} />;
+          })}
+        </div>
       </div>
-      <div id="project-List">
-        {projectList.map((projectData, key) => {
-          return <ProjectCard key={key} projectData={projectData} />;
-        })}
-      </div>
-    </div>
-  );
+    );
 }
-
 export default HomePage;

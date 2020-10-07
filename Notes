@@ -5,4 +5,61 @@ REACT_APP_API_URL=https://drf-project-demo.herokapp.com/
 CSS for all pages
 
 Sharing in social media Homepage
-CSS button in Homepage
+Adding Sign in/up on the top of pages
+
+Sharing on Social Media
+// import ReactDOM from "react-dom";
+// import {
+//   FacebookShareCount,
+//   FacebookShareButton,
+//   FacebookIcon,
+//   LinkedinShareButton,
+// } from "react-share";
+// import FaFacebook from "react-icons/lib/fa/facebook";
+// import { ShareButton } from "react-custom-share";
+import axios from "axios";
+
+// if there's no user, show the login form
+
+    // const App = (props) => {
+    //   const shareButtonProps = {
+    //     url: "https://github.com/greglobinski/react-custom-share",
+    //     network: "Facebook",
+    //     text: "Give it a try - react-custom-share component",
+    //     longtext:
+    //       "Social sharing buttons for React. Use one of the build-in themes or create a custom one from the scratch.",
+    //   };
+
+    // <FacebookShareCount url={shareUrl}>
+    //   {(shareCount) => <span className="myShareCountWrapper">{shareCount}</span>}
+    // </FacebookShareCount>;
+
+              {/* <div className="buttons">
+          <Link to="/donate">Status</Link>;
+        </div> */}
+          {/* <div>
+            <ShareButton {...shareButtonProps}>
+              <FaFacebook />
+            </ShareButton>
+            ; };
+          </div> */}
+          {/* <div className="buttons">
+          <Link to="https://github.com">Share</Link>; label=
+          {(serviceName) => localise("share_label", { serviceName })}
+        </div> */}
+
+        //   ReactDOM.render(<App />, document.getElementById("root"));
+// }
+
+// export default function SocialMediaButtons(props) {
+//   return (
+//     <FacebookShareButton
+//       url={"http://www.camperstribe.com"}
+//       quote={"CampersTribe - World is yours to explore"}
+//       hashtag="#camperstribe"
+//       className={classes.socialMediaButton}
+//     >
+//       <FacebookIcon size={36} />
+//     </FacebookShareButton>
+//   );
+// }

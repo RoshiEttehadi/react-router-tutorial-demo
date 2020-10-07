@@ -14,7 +14,7 @@ function SignUpForm() {
     password: "",
   });
 
-  console.log(credentials);
+  // console.log(credentials);
 
   const history = useHistory();
 
@@ -27,7 +27,7 @@ function SignUpForm() {
   };
   const postData = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}api-token-auth/`,
+      `${process.env.REACT_APP_API_URL}users/`,
       {
         method: "post",
         headers: {
@@ -41,7 +41,14 @@ function SignUpForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (credentials.username && credentials.password) {
+    console.log(credentials);
+    if (credentials.name && 
+      credentials.anonymous && 
+      credentials.age && 
+      credentials.gender && 
+      credentials.email && 
+      credentials.username && 
+      credentials.password) {
       postData().then((response) => {
         window.localStorage.setItem("token", response.token);
         history.push("/");
@@ -129,6 +136,16 @@ function SignUpForm() {
           id="email"
           name="email"
           placeholder="Please enter your email address"
+          onChange={handleChange}
+        />
+      </div>
+       <div>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your Username"
           onChange={handleChange}
         />
       </div>
