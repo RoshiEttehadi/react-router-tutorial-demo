@@ -1,24 +1,28 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav/Nav";
 import ProjectPage from "./pages/ProjectPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import ContactPage from "./pages/ContactPage";
+// import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
 import DonatePage from "./pages/DonatePage";
 import SignUpPage from "./pages/SignUpPage";
 import UserProfile from "./pages/UserProfile";
+import Header from "./components/Header/Header";
 
 function App() {
-  const token = window.localStorage.getItem("token")
-  const [loggedIn, setLoggedIn] = useState(token != null)
+  const token = window.localStorage.getItem("token");
+  const [loggedIn, setLoggedIn] = useState(token != null);
 
   return (
     <Router>
+      <Route path="/">
+        <Header />
+      </Route>
       <div>
-        <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+        <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
           <Route path="/project/:id">
             <ProjectPage />
