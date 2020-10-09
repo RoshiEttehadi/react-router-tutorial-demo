@@ -21,9 +21,12 @@ function ProjectCard(props) {
         <h3>{projectData.title}</h3>
       </Link>
       {/* <div className="card-link"> */}
-      <button className="copy-link" onClick={copyLink}>
+      {/* <button className="copy-link" onClick={copyLink}>
         Copy Link
-      </button>
+      </button> */}
+      <div className="buttons">
+            <Link to="/donate">Donate</Link>;
+      </div>
       {/* </div> */}
     </div>
   );

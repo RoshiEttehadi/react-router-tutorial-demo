@@ -10,7 +10,8 @@ import AboutPage from "./pages/AboutPage";
 import DonatePage from "./pages/DonatePage";
 import SignUpPage from "./pages/SignUpPage";
 import UserProfile from "./pages/UserProfile";
-import Header from "./components/Header/Header";
+import CreateProject from "./pages/CreateProject";
+import Header from "./Header/Header";
 
 function App() {
   const token = window.localStorage.getItem("token");
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignUpPage />
+          </Route>
+          <Route path="/create-project">
+            <CreateProject />
           </Route>
           <Route path="/profile">
             <UserProfile />

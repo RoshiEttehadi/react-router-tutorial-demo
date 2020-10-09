@@ -1,4 +1,4 @@
-.topnav {
+.nav {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -7,11 +7,11 @@
   margin-bottom: 20px;
   width: 100%;
   overflow: hidden;
-  color: #ffffff;
 }
 
-.topnav link {
-  color: #f4bd00;
+.nav-link {
+  color: rgb(168, 9, 4);
   text-decoration: none;
   font-size: 1em;
+  padding: 2vw;
 }

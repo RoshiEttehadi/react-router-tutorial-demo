@@ -21,7 +21,7 @@ function HomePage() {
     return (
       <div>
         <div className="homepage">
-          <h2>Project of the Month</h2>
+          <h1>Featured Projects</h1>
           <img
             id="projectimage"
             src={require("../images/1.jpg")}

@@ -1,5 +1,5 @@
 .buttons {
-  background-color: #e7e7e7;
+  background-color: #b4b4b4;
   border: none;
   color: black;
   padding: 15px 32px;
@@ -9,4 +9,8 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+.homepage {
+  background-color: rgb(158, 157, 157);
 }

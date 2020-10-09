@@ -12,14 +12,14 @@ function Nav({ setLoggedIn, loggedIn }) {
   // }, [location])
 
   return (
-    <nav>
-      <div className="topnav">
-        <Link to="/">Home</Link>
-        <Link to="/about">About Us</Link>
+    <nav className="nav">
+      <div>
+        <Link className="nav-link" to="/">Home</Link>
+        <Link className="nav-link" to="/about">About Us</Link>
         {/* <Link to="/contact">Contact</Link> */}
-        <Link to="/project">Project</Link>
+        <Link className="nav-link" to="/project">Project</Link>
         {!loggedIn ? (
-          <Link to="/login">Login</Link>
+          <Link className="nav-link" to="/login">Login</Link>
         ) : (
           <button
             onClick={() => {
