@@ -17,9 +17,9 @@ function Nav({ setLoggedIn, loggedIn }) {
         <Link className="nav-link" to="/">Home</Link>
         <Link className="nav-link" to="/about">About Us</Link>
         {/* <Link to="/contact">Contact</Link> */}
-        <Link className="nav-link" to="/project">Project</Link>
+        <Link className="nav-link" to="/create-project">Create a Project</Link>
         {!loggedIn ? (
-          <Link className="nav-link" to="/login">Login</Link>
+          <Link className="nav-link" to="/login">Log In/ Sign Up</Link>
         ) : (
           <button
             onClick={() => {

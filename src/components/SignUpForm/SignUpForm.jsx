@@ -57,10 +57,11 @@ function SignUpForm() {
   };
 
   return (
-    <form>
-      <div className="signupform">
-        <label htmlFor="name">Name:</label>
-        <input
+    <form className="signupform">
+      <h2 id="headerTitle">Sign Up</h2>
+      <div>
+        <label class="row" htmlFor="name">Name:</label>
+        <input class="row" 
           type="text"
           id="name"
           name="name"
@@ -69,8 +70,8 @@ function SignUpForm() {
         />
       </div>
       <div>
-        <label htmlFor="anonymous">Anonymous:</label>
-        <input
+        <label class="row"  htmlFor="anonymous">Anonymous:</label>
+        <input class="row" 
           type="radio"
           id="isAnonymous"
           name="anonymous"
@@ -130,7 +131,7 @@ function SignUpForm() {
         Prefer not to say
       </div>
       <div>
-        <label htmlFor="email">Email:</label>
+        <label class="row"htmlFor="email">Email:</label>
         <input
           type="email"
           id="email"
@@ -140,7 +141,7 @@ function SignUpForm() {
         />
       </div>
        <div>
-        <label htmlFor="username">Username:</label>
+        <label class="row" htmlFor="username">Username:</label>
         <input
           type="text"
           id="username"
@@ -150,7 +151,7 @@ function SignUpForm() {
         />
       </div>
       <div>
-        <label htmlFor="password">Password:</label>
+        <label class="row" htmlFor="password">Password:</label>
         <input
           type="password"
           id="password"
@@ -160,18 +161,18 @@ function SignUpForm() {
         />
       </div>
       <div>
-        <label htmlFor="project">Project:</label>
-        <input
+        <label class="row" htmlFor="project">Project:</label>
+        <input class="row" 
           type="text"
           id="project"
           name="project"
           placeholder="Name of the project"
           onChange={handleChange}
         />
-      </div>
-      <button type="submit" onClick={handleSubmit}>
+      <button id="button" type="submit" onClick={handleSubmit}>
         Submit
       </button>
+      </div>
     </form>
   );
 }

@@ -3,177 +3,130 @@ import { useHistory } from "react-router-dom"
 import "./CreateProject.css"
 
 function CreateProject() {
-  // Variables
+
   const date = new Date()
-  const history = useHistory()
-  const token = window.localStorage.getItem("token")
-  const [project, setProject] = useState({
+  // Variables
+  const [credentials, setCredentials] = useState({
     title: "",
     description: "",
     goal: "",
     image: "",
-    is_open: false,
+    status: null,
     date_created: date.toISOString(),
     owner: [],
-  })
+  });
 
-  const [errorMessages, setErrors] = useState({
-    title: "",
-    description: "",
-    goal: "",
-    image: "",
-    is_open: "",
-    species: "",
-  })
+ 
+  console.log(credentials);
 
-  // Methods
-
-  const validAmountRegex = RegExp(/[0-9]{1,}/)
-
-  // Check input to check if it matches requirements and set error state
-  const validateInput = () => {
-    let errors = { ...errorMessages }
-
-    errors.title = project.title.length < 2 ? "Enter a title" : ""
-
-    errors.description =
-      project.description.length < 5 ? "Enter a longer description" : ""
-
-    errors.goal = validAmountRegex.test(project.goal)
-      ? ""
-      : "Enter an amount valid whole number amount"
-
-    errors.image = project.image.length < 8 ? "Enter a valid image URL" : ""
-
-    errors.date_created =
-      project.date_created.length < 1 ? "Enter starting date" : ""
-
-    // errors.species =
-    //   project.species.length < 1 ? "Select an animal species" : ""
-
-    return errors
-  }
-
-  // Find an if an instance of an error message exists, and return either true or false
-  const validateForm = () => {
-    const errors = validateInput()
-    const firstValidationError = Object.values(errors).find(
-      (error) => error.length > 0
-    )
-    setErrors(errors)
-    return firstValidationError === undefined
-  }
-
+  const history = useHistory();
+  
   const handleChange = (e) => {
-    const { id, value } = e.target
-    setProject((projectDetails) => ({
+    const { name, value } = e.target
+    setCredentials((projectDetails) => ({
       ...projectDetails,
-      [id]: value,
-    }))
-  }
-
-  useEffect(() => {
-    const match = validAmountRegex.exec(project.goal)
-    if (match) project.goal = match[0]
-  }, [project.goal, validAmountRegex])
-
-  // This triggers when an animal logo is clicked and adds or removes that animal to the petlike value of state
-  // const onAnimalClick = (animal, selected) => {
-  //   if (selected) {
-  //     setProject((project) => ({
-  //       ...project,
-  //       species: [...project.species, animal],
-  //     }))
-  //   }
-  //   if (!selected) {
-  //     setProject((project) => ({
-  //       ...project,
-  //       species: project.species.filter((critter) => critter !== animal),
-  //     }))
-  //   }
-  // }
-
-  const onButtonClick = (activeButton) => {
-    setProject((project) => ({
-      ...project,
-      is_open: activeButton,
+      [name]: value,
     }))
   }
 
   const postData = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}projects/`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
-      body: JSON.stringify(project),
-    })
-    return response.json()
-  }
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}api-token-auth/`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      }
+    );
+    return response.json();
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (validateForm(errorMessages)) {
+    e.preventDefault();
+    if (credentials.title &&
+       credentials.description &&
+       credentials.goal &&
+       credentials.image &&
+       credentials.status &&
+       credentials.date_created &&
+       credentials.owner) {
       postData().then((response) => {
-        console.log(response)
-        history.push(`project/${response.id}/`)
-      })
-    } else {
-      console.log("invalid form")
+        window.localStorage.setItem("token", response.token);
+        history.push("/");
+      });
     }
-  }
+  };
 
   return (
-    <div className="submit-project-form">
-      {/* <TitleText title="Create A Project" />
-      <ToggleButton
-        valueOne="Active"
-        valueTwo="Inactive"
-        label="Project Status"
-        onButtonClick={onButtonClick}
-      /> */}
-      {/* <TextInput
-        id="title"
-        type="text"
-        label="Project Title"
-        placeholder="Give your project an attention grabbing name!"
-        onChange={handleChange}
-        error={errorMessages.title}
-      />
-      <TextArea
-        id="description"
-        type="text"
-        label="Project Summary"
-        placeholder="Tell us what this project is all about"
-        error={errorMessages.description}
-        onChange={handleChange}
-      /> */}
-      {/* <TextInput
-        id="goal"
-        type="text"
-        label="Funding Goal"
-        placeholder="$500"
-        onChange={handleChange}
-        error={errorMessages.goal}
-      />
-      <TextInput
-        id="image"
-        type="url"
-        label="Image URL"
-        placeholder="Enter a URL to your most eye catching photo"
-        onChange={handleChange}
-        error={errorMessages.image}
-      /> */}
-      {/* <AnimalCategories
-        label="Select Animal Species"
-        onAnimalClick={onAnimalClick}
-        error={errorMessages.species}
-        initState={[]}
-      />
-      <Button value="Create Project" onClick={handleSubmit} type="submit" /> */}
-    </div>
-  )
+    <form>
+      <div className="projectform">
+        <label htmlFor="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Enter title"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="description">Description:</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          placeholder="Descripe your project"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="status">Status:</label>
+        <input
+          type="radio"
+          id="isopen"
+          name="status"
+          value={true}
+          checked={credentials.status === "true"}
+          onChange={handleChange}
+        />
+        Open
+        <input
+          type="radio"
+          id="notopen"
+          name="status"
+          value={false}
+          checked={credentials.status === "false"}
+          onChange={handleChange}
+        />
+        Closed
+      </div>
+      <div>
+        <label htmlFor="goal">Project:</label>
+        <input
+          type="number"
+          id="goal"
+          name="goal"
+          placeholder="Goal of the Project"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="image">Image:</label>
+        <input
+          type="url"
+          id="image"
+          name="image"
+          placeholder="Enter a URL to your most eye catching photo"
+          onChange={handleChange}
+        />
+      </div>
+      <button type="submit" onClick={handleSubmit}>
+        Submit
+      </button>
+    </form>
+  );
 }
 
 export default CreateProject;
